@@ -884,6 +884,8 @@ RCT_EXPORT_METHOD(verifyPasswordResetCode:
     credential = [FIREmailAuthProvider credentialWithEmail:authToken link:authTokenSecret];
   } else if ([provider compare:@"github.com" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
     credential = [FIRGitHubAuthProvider credentialWithToken:authToken];
+   } else if ([provider compare:@"apple.com" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+       credential = [FIROAuthProvider credentialWithProviderID:@"apple.com" IDToken:authToken rawNonce:authTokenSecret];
   } else if ([provider compare:@"phone" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
     credential =
         [[FIRPhoneAuthProvider provider] credentialWithVerificationID:authToken verificationCode:authTokenSecret];
